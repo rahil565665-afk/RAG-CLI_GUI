@@ -1,0 +1,734 @@
+{
+  "document_metadata": {
+    "title": "Northside Dental Clinic Fictional Knowledge Base",
+    "source_document": "Northside_Dental_Clinic_Knowledge_Base.pdf",
+    "source_version": "1.0",
+    "source_date": "8 November 2026",
+    "source_page_count": 12,
+    "fictional_demo_data": true,
+    "note": "This dataset was generated from the original PDF because the separate JSON and section-index files referenced in the development prompt were not present in the Library at build time. Chunk IDs are assigned by this CLI project using the documented NSDC-SS-NNN pattern; they are not claimed to be IDs from a missing earlier JSON file."
+  },
+  "sections": [
+    {
+      "section_id": "00",
+      "section_title": "Document information"
+    },
+    {
+      "section_id": "01",
+      "section_title": "Clinic profile"
+    },
+    {
+      "section_id": "02",
+      "section_title": "Services"
+    },
+    {
+      "section_id": "03",
+      "section_title": "Appointment handling"
+    },
+    {
+      "section_id": "04",
+      "section_title": "Patient logistics"
+    },
+    {
+      "section_id": "05",
+      "section_title": "Fees and insurance"
+    },
+    {
+      "section_id": "06",
+      "section_title": "Patient journey"
+    },
+    {
+      "section_id": "07",
+      "section_title": "Safety and escalation"
+    },
+    {
+      "section_id": "08",
+      "section_title": "Patient FAQs"
+    },
+    {
+      "section_id": "09",
+      "section_title": "Virtual receptionist playbook"
+    },
+    {
+      "section_id": "10",
+      "section_title": "Data capture and governance"
+    }
+  ],
+  "chunks": [
+    {
+      "chunk_id": "NSDC-00-001",
+      "section_id": "00",
+      "section_title": "Document information",
+      "subsection": "Document information and fictional-data warning",
+      "source_document": "Northside_Dental_Clinic_Knowledge_Base.pdf",
+      "source_pages": [
+        1
+      ],
+      "keywords": [
+        "fictional",
+        "demo",
+        "version",
+        "disclaimer",
+        "source"
+      ],
+      "content": "Northside Dental Clinic is a fictional clinic. Its staff, phone number, address, services, fees, insurance names, hours, and policies are invented for demonstration. This PDF is a demo knowledge base, not a real clinic directory, not medical advice, and not a substitute for review by a licensed dental professional. Replace and approve every operational detail before real-world use. Document version 1.0, dated 8 November 2026. The PDF has 12 pages."
+    },
+    {
+      "chunk_id": "NSDC-01-001",
+      "section_id": "01",
+      "section_title": "Clinic profile",
+      "subsection": "Clinic identity and profile",
+      "source_document": "Northside_Dental_Clinic_Knowledge_Base.pdf",
+      "source_pages": [
+        2
+      ],
+      "keywords": [
+        "clinic",
+        "profile",
+        "name",
+        "address",
+        "type",
+        "location",
+        "street address",
+        "mailing address",
+        "postal code",
+        "postcode",
+        "zip code",
+        "directions",
+        "clinic location",
+        "city",
+        "state",
+        "country"
+      ],
+      "content": "Business name: Northside Dental Clinic. Clinic type: independent general and family dental practice. Fictional demo street address: 18 Cedar Lane, Northside District, Riverton, Example State 00018, USA. The street, district, town, state name, and postal code are invented for this demonstration and are not a real-world clinic location."
+    },
+    {
+      "chunk_id": "NSDC-01-002",
+      "section_id": "01",
+      "section_title": "Clinic profile",
+      "subsection": "Contact details, access and patient groups",
+      "source_document": "Northside_Dental_Clinic_Knowledge_Base.pdf",
+      "source_pages": [
+        2
+      ],
+      "keywords": [
+        "phone",
+        "email",
+        "website",
+        "timezone",
+        "languages",
+        "parking",
+        "accessibility",
+        "children",
+        "transport"
+      ],
+      "content": "Phone: +1 (202) 555-0148 (fictional example number). Email: hello@northsidedental.example. Website: northsidedental.example. Time zone: Riverton local time (ET for this fictional example). Languages: English; interpreter requests can be arranged with advance notice. Patient ages: children aged 5 and older, teens, adults, and older adults. Accessibility: step-free entrance, ground-floor treatment rooms, accessible restroom. Parking: free patient parking behind the building; two accessible spaces near the entrance. Public transport: Cedar Lane bus stop, approximately 2 minutes on foot."
+    },
+    {
+      "chunk_id": "NSDC-01-003",
+      "section_id": "01",
+      "section_title": "Clinic profile",
+      "subsection": "Opening hours and holiday/weather closures",
+      "source_document": "Northside_Dental_Clinic_Knowledge_Base.pdf",
+      "source_pages": [
+        2
+      ],
+      "keywords": [
+        "hours",
+        "opening",
+        "schedule",
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday",
+        "saturday",
+        "sunday",
+        "holiday",
+        "closed"
+      ],
+      "content": "Monday: 8:00 AM - 5:00 PM (lunch closure 1:00 - 2:00 PM). Tuesday: 8:00 AM - 5:00 PM (lunch closure 1:00 - 2:00 PM). Wednesday: 10:00 AM - 7:00 PM (no lunch closure for phone coverage). Thursday: 8:00 AM - 5:00 PM (lunch closure 1:00 - 2:00 PM). Friday: 8:00 AM - 4:00 PM (lunch closure 1:00 - 2:00 PM). Saturday: 9:00 AM - 1:00 PM (appointments only). Sunday: closed; no routine appointments. The clinic may close on selected public holidays or during severe weather. The published website banner and outgoing phone message are the source of truth. Never assume the clinic is open on a holiday; confirm with the front desk."
+    },
+    {
+      "chunk_id": "NSDC-02-001",
+      "section_id": "02",
+      "section_title": "Services",
+      "subsection": "General and family dental services",
+      "source_document": "Northside_Dental_Clinic_Knowledge_Base.pdf",
+      "source_pages": [
+        3
+      ],
+      "keywords": [
+        "services",
+        "new patient",
+        "examination",
+        "cleaning",
+        "filling",
+        "crown",
+        "root canal",
+        "extraction",
+        "gum",
+        "whitening",
+        "children",
+        "urgent"
+      ],
+      "content": "The clinic offers general and family dentistry. Services: new-patient examination (medical and dental history review, oral assessment, and discussion of concerns; X-rays only when the dentist determines they are appropriate; allow 60 minutes); routine examination (periodic review of teeth, gums, bite, and oral-health concerns; allow 30-45 minutes); professional cleaning (removal of plaque and calculus by a dental professional, with oral-hygiene guidance; allow 45-60 minutes); fillings (restoration of a tooth affected by decay or minor damage; dentist confirms material and treatment plan after assessment); crowns (custom covering used to restore a tooth when clinically indicated; usually requires consultation and a separate placement visit); root canal treatment (treatment intended to address disease or injury inside a tooth; dentist assesses suitability and number of visits); tooth extraction (when recommended by treating dentist; clinical review first unless dentist has already advised otherwise); gum/periodontal care; teeth whitening consultation and eligible in-clinic or take-home options; children’s dentistry for children aged 5+; urgent dental assessment for acute dental pain, swelling, injury, or a broken tooth (same-day review may be possible; never guarantee a slot)."
+    },
+    {
+      "chunk_id": "NSDC-02-002",
+      "section_id": "02",
+      "section_title": "Services",
+      "subsection": "Services not provided in-house and service-answer rule",
+      "source_document": "Northside_Dental_Clinic_Knowledge_Base.pdf",
+      "source_pages": [
+        3
+      ],
+      "keywords": [
+        "not provided",
+        "orthodontic",
+        "braces",
+        "aligners",
+        "oral surgery",
+        "sedation",
+        "referral",
+        "diagnosis"
+      ],
+      "content": "The clinic does not provide orthodontic braces or aligners, oral surgery requiring hospital facilities, IV sedation, or specialist paediatric dentistry. The dentist may provide a referral after an assessment. Do not tell a caller that an outside referral has been accepted until the receiving provider confirms it. Approved service-answer rule: “We can arrange an assessment so the dentist can advise what is suitable.” Avoid diagnosing, guaranteeing outcomes, naming a specific treatment as necessary, or quoting a definitive treatment plan over the phone."
+    },
+    {
+      "chunk_id": "NSDC-03-001",
+      "section_id": "03",
+      "section_title": "Appointment handling",
+      "subsection": "New-patient booking information",
+      "source_document": "Northside_Dental_Clinic_Knowledge_Base.pdf",
+      "source_pages": [
+        4
+      ],
+      "keywords": [
+        "new patient",
+        "booking",
+        "information",
+        "contact",
+        "reason",
+        "appointment",
+        "insurance",
+        "symptoms"
+      ],
+      "content": "For a new patient, collect only what is needed for the booking workflow: identity and contact (full name, preferred name, date of birth, mobile number, and email if the patient wishes to provide one); appointment reason (routine check-up, cleaning, specific concern, second opinion, or urgent symptom), recording the patient’s own words; preferred days/times and whether the patient can accept a cancellation opening; practical needs such as accessibility or interpreter request, child/guardian attendance, and scheduling constraints; insurer and plan name only if the patient wants a benefits check, without promising coverage. Note reported symptoms without interpreting them and route red-flag symptoms using the urgent-call protocol."
+    },
+    {
+      "chunk_id": "NSDC-03-002",
+      "section_id": "03",
+      "section_title": "Appointment handling",
+      "subsection": "Returning-patient information and verification",
+      "source_document": "Northside_Dental_Clinic_Knowledge_Base.pdf",
+      "source_pages": [
+        4
+      ],
+      "keywords": [
+        "returning patient",
+        "identity",
+        "verify",
+        "date of birth",
+        "callback",
+        "privacy",
+        "records"
+      ],
+      "content": "For a returning patient, confirm full name and date of birth before accessing or discussing appointment details. Confirm the best callback number and whether contact by text or email is acceptable. Ask what the patient needs today and check the existing treatment plan or recall interval only if authorized staff can access it. If the patient describes a new or worsening problem, follow the urgent-call protocol rather than treating it as a routine visit."
+    },
+    {
+      "chunk_id": "NSDC-03-003",
+      "section_id": "03",
+      "section_title": "Appointment handling",
+      "subsection": "Appointment booking workflow",
+      "source_document": "Northside_Dental_Clinic_Knowledge_Base.pdf",
+      "source_pages": [
+        4
+      ],
+      "keywords": [
+        "booking steps",
+        "triage",
+        "visit type",
+        "availability",
+        "schedule",
+        "confirm",
+        "appointment"
+      ],
+      "content": "Booking steps: (1) Identify whether the caller is a new or returning patient and clarify the reason for the visit. (2) Triage: listen for urgent symptoms and use escalation rules before routine scheduling. (3) Match the visit: select the correct appointment type and duration from the scheduling guide. (4) Check availability: offer only actual openings shown in the live schedule; do not invent or assume a slot. (5) Confirm details: read back date, local time, provider if assigned, appointment type, address, and arrival guidance. (6) Close the call: explain cancellation/contact options and send confirmation using the patient’s approved channel."
+    },
+    {
+      "chunk_id": "NSDC-03-004",
+      "section_id": "03",
+      "section_title": "Appointment handling",
+      "subsection": "When live availability is not visible",
+      "source_document": "Northside_Dental_Clinic_Knowledge_Base.pdf",
+      "source_pages": [
+        4
+      ],
+      "keywords": [
+        "live availability",
+        "not visible",
+        "booked",
+        "appointment request",
+        "front desk",
+        "callback"
+      ],
+      "content": "If live availability is not visible, do not say “you are booked.” Say: “I can take your preferred times and have our front desk confirm the first available appointment.” Record the request and create a callback task for staff. This CLI has no live scheduling integration and cannot confirm or book appointments."
+    },
+    {
+      "chunk_id": "NSDC-04-001",
+      "section_id": "04",
+      "section_title": "Patient logistics",
+      "subsection": "Appointment policies and patient logistics",
+      "source_document": "Northside_Dental_Clinic_Knowledge_Base.pdf",
+      "source_pages": [
+        5
+      ],
+      "keywords": [
+        "arrival",
+        "late",
+        "cancellation",
+        "notice",
+        "missed",
+        "no-show",
+        "waitlist",
+        "minors",
+        "guardian",
+        "support person",
+        "service animal",
+        "interpreter",
+        "fasting",
+        "medical update"
+      ],
+      "content": "New patients should arrive 15 minutes before the scheduled time to complete forms. Returning patients should arrive 10 minutes early. Patients more than 10 minutes late may need to be rescheduled if the clinical team cannot safely complete the planned visit; staff should check with the team before changing an appointment. Please provide at least 24 hours’ notice to cancel or move a routine appointment. Call the clinic; do not rely only on email or voicemail for a same-day change. A missed-appointment fee of $35 may apply after the first no-show; staff must review documented exceptions before charging. Patients may ask to join the short-notice waitlist; this does not guarantee an earlier appointment. A parent or legal guardian must attend for patients under 18 and provide consent where required. A support person may accompany a patient when space and clinical safety allow; patient permission is required before discussing their care. Service animals are welcome in public areas; coordinate treatment-room arrangements with the clinical team. Interpreter requests should be made at least 3 business days ahead where possible. Do not give fasting instructions unless the treating clinician has specifically directed them; routine visits generally do not require fasting. Ask patients to update the dental team about new medications, allergies, pregnancy, or significant health changes at check-in; do not collect unnecessary details by open phone line."
+    },
+    {
+      "chunk_id": "NSDC-04-002",
+      "section_id": "04",
+      "section_title": "Patient logistics",
+      "subsection": "Confirmation wording and scheduling limitations",
+      "source_document": "Northside_Dental_Clinic_Knowledge_Base.pdf",
+      "source_pages": [
+        5
+      ],
+      "keywords": [
+        "confirmation",
+        "appointment confirmed",
+        "provider",
+        "room",
+        "treatment outcome",
+        "length"
+      ],
+      "content": "Sample confirmation wording: “Your appointment request is confirmed for [day, date] at [time] with [provider, if assigned] at Northside Dental Clinic, 18 Cedar Lane. Please arrive 15 minutes early if this is your first visit. To change a routine appointment, please give at least 24 hours’ notice by calling +1 (202) 555-0148.” Never promise a specific provider, room, treatment outcome, or appointment length unless it is displayed in the approved scheduling system. The sample wording is not a live booking confirmation."
+    },
+    {
+      "chunk_id": "NSDC-05-001",
+      "section_id": "05",
+      "section_title": "Fees and insurance",
+      "subsection": "Sample fees for common services",
+      "source_document": "Northside_Dental_Clinic_Knowledge_Base.pdf",
+      "source_pages": [
+        6
+      ],
+      "keywords": [
+        "fees",
+        "price",
+        "cost",
+        "cleaning",
+        "routine cleaning",
+        "examination",
+        "filling",
+        "crown",
+        "emergency assessment",
+        "missed appointment"
+      ],
+      "content": "All prices are fictional examples and are not a real clinic fee schedule. Sample fees: new-patient examination $85 (does not include optional imaging or treatment); periodic examination $65 (may be billed with other services depending on the visit); routine cleaning $120 (final fee may vary with clinical needs and time required); simple filling $145 - $260 (depends on tooth, surfaces, and material); crown consultation $75 (crown fee is quoted after examination and treatment planning); emergency assessment $95 (treatment, imaging, or medication is not included); missed appointment $35 (may apply under the policy; exceptions are reviewed). Confirm the current amount with the front desk."
+    },
+    {
+      "chunk_id": "NSDC-05-002",
+      "section_id": "05",
+      "section_title": "Fees and insurance",
+      "subsection": "Payment methods and payment-data safety",
+      "source_document": "Northside_Dental_Clinic_Knowledge_Base.pdf",
+      "source_pages": [
+        6
+      ],
+      "keywords": [
+        "payment",
+        "cash",
+        "cards",
+        "HealthPay Flex",
+        "financing",
+        "card numbers",
+        "security code",
+        "credentials"
+      ],
+      "content": "The fictional clinic accepts major credit and debit cards, cash, and HealthPay Flex (a made-up third-party financing example). Payment is due on the day of service unless a written payment arrangement has been approved in advance. The receptionist must never take or store full card numbers, security codes, online banking credentials, or identity-document numbers in free-text notes."
+    },
+    {
+      "chunk_id": "NSDC-05-003",
+      "section_id": "05",
+      "section_title": "Fees and insurance",
+      "subsection": "Insurance and benefit estimates",
+      "source_document": "Northside_Dental_Clinic_Knowledge_Base.pdf",
+      "source_pages": [
+        6
+      ],
+      "keywords": [
+        "insurance",
+        "benefits",
+        "BrightSmile PPO",
+        "Harbor Dental PPO",
+        "coverage",
+        "reimbursement",
+        "claim",
+        "deductible",
+        "pre-authorization"
+      ],
+      "content": "Fictional in-network examples: BrightSmile PPO and Harbor Dental PPO. Participation varies by plan and employer group; verify using the current payer directory or staff benefits tool. The clinic may submit claims to other dental plans as an out-of-network courtesy, but this is not a guarantee of reimbursement. Insurance estimates are based on information available at the time and are not a promise of payment. The insurer makes the final coverage decision. Deductibles, annual maximums, waiting periods, exclusions, frequency limits, and plan-year rules may affect patient responsibility. Pre-authorization is an estimate or request for review, not a guarantee that the plan will pay. The patient is responsible for charges not paid by the insurer, subject to applicable law and any written agreement. Approved wording: “We can help check your plan details and submit the claim when applicable. Your insurer makes the final decision, so we cannot guarantee coverage or a specific reimbursement amount before the claim is processed.”"
+    },
+    {
+      "chunk_id": "NSDC-05-004",
+      "section_id": "05",
+      "section_title": "Fees and insurance",
+      "subsection": "Discounts and third-party financing",
+      "source_document": "Northside_Dental_Clinic_Knowledge_Base.pdf",
+      "source_pages": [
+        6
+      ],
+      "keywords": [
+        "discount",
+        "5%",
+        "courtesy",
+        "financing",
+        "approval",
+        "terms"
+      ],
+      "content": "A fictional 5% courtesy discount may be available for eligible patients paying in full on the day of service; it cannot be combined with other promotions and does not apply to third-party fees. Any discount must be verified by the front desk before it is quoted. Financing is subject to the provider’s approval and terms."
+    },
+    {
+      "chunk_id": "NSDC-06-001",
+      "section_id": "06",
+      "section_title": "Patient journey",
+      "subsection": "First-visit patient journey",
+      "source_document": "Northside_Dental_Clinic_Knowledge_Base.pdf",
+      "source_pages": [
+        7
+      ],
+      "keywords": [
+        "first visit",
+        "registration",
+        "medical history",
+        "examination",
+        "imaging",
+        "consent",
+        "treatment options"
+      ],
+      "content": "At the first visit, the patient completes registration and medical-history forms, then confirms medications and allergies with the clinical team. The dentist discusses the patient’s concerns and performs an examination. Imaging may be recommended only when the dentist determines it is appropriate. The dentist explains findings, options, risks, expected costs, and next steps. The patient can ask questions before consenting. If treatment is not completed that day, reception helps arrange the next appointment."
+    },
+    {
+      "chunk_id": "NSDC-06-002",
+      "section_id": "06",
+      "section_title": "Patient journey",
+      "subsection": "Common appointment types and clinician decisions",
+      "source_document": "Northside_Dental_Clinic_Knowledge_Base.pdf",
+      "source_pages": [
+        7
+      ],
+      "keywords": [
+        "cleaning",
+        "filling",
+        "crown",
+        "root canal",
+        "extraction",
+        "whitening",
+        "treatment plan"
+      ],
+      "content": "For cleaning, a dental professional assesses oral hygiene and cleans teeth; additional gum care may be recommended if needed. For a filling, the dentist examines the tooth and discusses the recommended restoration before proceeding. A crown commonly involves assessment, preparation, an impression or scan, and a later placement appointment. For root canal treatment, the dentist assesses the tooth and explains whether root canal treatment or another option is appropriate. For extraction, the dentist reviews the tooth, health history, options, and consent before removal. For whitening, the dentist checks suitability, discusses likely results and sensitivity, and explains available options. Specific decisions belong to the dentist."
+    },
+    {
+      "chunk_id": "NSDC-06-003",
+      "section_id": "06",
+      "section_title": "Patient journey",
+      "subsection": "Pre-visit preparation and aftercare",
+      "source_document": "Northside_Dental_Clinic_Knowledge_Base.pdf",
+      "source_pages": [
+        7
+      ],
+      "keywords": [
+        "preparation",
+        "photo id",
+        "medication",
+        "allergy",
+        "aftercare",
+        "worsening pain",
+        "swelling",
+        "bleeding",
+        "fever"
+      ],
+      "content": "For most routine appointments, patients should bring a photo ID if required by the practice, insurance details if they want a benefits check, and a current medication/allergy list. They should tell the team about relevant medical changes. Do not instruct a patient to stop medication, fast, or take a medicine before a visit unless a clinician has provided individualized instructions. Provide written aftercare instructions issued by the treating clinician or connect the patient to the clinical team. If a patient reports worsening pain, new swelling, persistent bleeding, fever, or another concerning change after treatment, route the call to a clinician promptly. For severe symptoms affecting breathing or swallowing, follow the emergency protocol."
+    },
+    {
+      "chunk_id": "NSDC-07-001",
+      "section_id": "07",
+      "section_title": "Safety and escalation",
+      "subsection": "Emergency symptoms and immediate action",
+      "source_document": "Northside_Dental_Clinic_Knowledge_Base.pdf",
+      "source_pages": [
+        8
+      ],
+      "keywords": [
+        "emergency",
+        "difficulty breathing",
+        "trouble breathing",
+        "swallowing",
+        "rapidly spreading",
+        "facial swelling",
+        "neck swelling",
+        "heavy bleeding",
+        "facial trauma",
+        "loss of consciousness",
+        "altered awareness"
+      ],
+      "content": "This is a receptionist routing guide, not a diagnostic tool. Do not diagnose, recommend prescription medication, or delay emergency care while gathering routine booking details. If the caller reports difficulty breathing or swallowing, rapidly spreading facial/neck swelling, severe facial trauma, loss of consciousness, or bleeding that is heavy and will not stop, tell them to contact local emergency services immediately. In this fictional US setting only, the emergency number is 911. Do not place them in the routine appointment queue. Never present 911 as a universal emergency number."
+    },
+    {
+      "chunk_id": "NSDC-07-002",
+      "section_id": "07",
+      "section_title": "Safety and escalation",
+      "subsection": "Urgency levels, routing questions and safe language",
+      "source_document": "Northside_Dental_Clinic_Knowledge_Base.pdf",
+      "source_pages": [
+        8
+      ],
+      "keywords": [
+        "urgent",
+        "same day",
+        "prompt",
+        "routine",
+        "bleeding",
+        "swelling",
+        "dental injury",
+        "escalation",
+        "clinical team"
+      ],
+      "content": "Urgency routing: Emergency/immediate includes breathing or swallowing difficulty, rapidly spreading face/neck swelling, uncontrolled heavy bleeding, serious facial injury, fainting or altered awareness; tell the caller to contact emergency services now and alert the clinical lead if clinic staff are available. Urgent/same-day review requested includes severe or escalating tooth pain, facial swelling without breathing/swallowing difficulty, dental injury, knocked-out or displaced tooth, and worsening post-treatment symptoms; alert the clinical team immediately and request same-day triage. If no clinician is available, advise contacting an urgent dental service. Prompt/next available clinical advice includes broken filling or crown without severe pain, localized discomfort, sensitivity, mild post-visit concern, or lost retainer/appliance; offer the next appropriate appointment or clinician callback and escalate sooner if symptoms worsen or red flags appear. Routine includes check-up, cleaning, cosmetic consultation, general information, and non-urgent rescheduling. Ask symptom questions only when this does not delay emergency help. Safe language: “I’m not a clinician, so I can’t assess the cause over the phone. I’m going to connect you with the clinical team for guidance. Based on what you have described, please seek emergency help now if you are having trouble breathing or swallowing, or if swelling is spreading rapidly.” Do not diagnose, advise waiting, recommend antibiotics, or claim a specific treatment is necessary."
+    },
+    {
+      "chunk_id": "NSDC-08-001",
+      "section_id": "08",
+      "section_title": "Patient FAQs",
+      "subsection": "FAQs about appointments and services",
+      "source_document": "Northside_Dental_Clinic_Knowledge_Base.pdf",
+      "source_pages": [
+        9
+      ],
+      "keywords": [
+        "faq",
+        "new patients",
+        "book",
+        "same day",
+        "walk-ins",
+        "arrive",
+        "cancel",
+        "children",
+        "braces",
+        "aligners",
+        "sedation",
+        "emergency dental"
+      ],
+      "content": "The fictional clinic is accepting new patients. New patients can request an examination by phone or through the website. To book, call +1 (202) 555-0148 or use the appointment request form at northsidedental.example; a web request is not confirmed until the clinic sends a confirmation. Same-day appointments depend on clinician availability and the nature of the concern; the receptionist checks the live schedule and asks the clinical team to triage urgent symptoms. The clinic is appointment-based and does not accept walk-ins; call first. New patients arrive 15 minutes early; returning patients arrive 10 minutes early. Call at least 24 hours before routine cancellations. Patients aged 5 and older are seen; a parent or legal guardian must attend for patients under 18. For serious symptoms such as difficulty breathing or swallowing, seek emergency help immediately. Orthodontic treatment (braces or clear aligners) is not provided in-house. IV sedation is not provided in-house; ask the dentist about appropriate options or referrals."
+    },
+    {
+      "chunk_id": "NSDC-08-002",
+      "section_id": "08",
+      "section_title": "Patient FAQs",
+      "subsection": "FAQs about fees, insurance and payment",
+      "source_document": "Northside_Dental_Clinic_Knowledge_Base.pdf",
+      "source_pages": [
+        10
+      ],
+      "keywords": [
+        "faq",
+        "insurance",
+        "cleaning cost",
+        "fee",
+        "treatment quote",
+        "payment methods",
+        "instalments",
+        "financing",
+        "reimbursement"
+      ],
+      "content": "The fictional clinic lists BrightSmile PPO and Harbor Dental PPO as example plans. Participation depends on the exact plan. The front desk can verify benefits, but the insurer makes the final coverage decision. Insurance payment cannot be predicted reliably before a claim is processed; estimates are not guarantees. The fictional sample fee for a cleaning is $120; the final fee may vary if additional care is needed, so confirm the current fee with the front desk. The clinic can share general sample fees for common services, but a dentist must examine the patient before confirming a treatment plan and final cost. The fictional clinic accepts major credit and debit cards, cash, and HealthPay Flex, subject to the provider’s terms. A third-party financing option may be available subject to approval; ask the front desk to explain current options and terms."
+    },
+    {
+      "chunk_id": "NSDC-08-003",
+      "section_id": "08",
+      "section_title": "Patient FAQs",
+      "subsection": "FAQs about records, privacy, care concerns and logistics",
+      "source_document": "Northside_Dental_Clinic_Knowledge_Base.pdf",
+      "source_pages": [
+        10
+      ],
+      "keywords": [
+        "records",
+        "x-rays",
+        "privacy",
+        "partner",
+        "child",
+        "nervous",
+        "medication",
+        "allergy",
+        "parking",
+        "public holidays"
+      ],
+      "content": "Requests for records or X-rays must be verified and handled through the clinic’s approved records process; the receptionist should not send clinical records from a personal email account. Staff must confirm the caller’s authority and the patient’s permission or legal guardian status before sharing private appointment or health information. Patients who are nervous about dental treatment should tell the team when booking; the dentist can discuss concerns and available comfort measures during the visit; do not promise a particular medication or sedation method. Patients with a new medication or allergy should tell the clinical team before treatment, ideally when completing the medical-history update; do not stop or change prescribed medication based on receptionist advice. Free patient parking is available behind the building, including two accessible spaces near the entrance. Holiday hours may vary; check the current website notice or call the clinic before travelling."
+    },
+    {
+      "chunk_id": "NSDC-09-001",
+      "section_id": "09",
+      "section_title": "Virtual receptionist playbook",
+      "subsection": "Virtual receptionist role and approved voice",
+      "source_document": "Northside_Dental_Clinic_Knowledge_Base.pdf",
+      "source_pages": [
+        11
+      ],
+      "keywords": [
+        "virtual receptionist",
+        "role",
+        "tone",
+        "calm",
+        "warm",
+        "brief",
+        "accurate",
+        "schedule",
+        "route"
+      ],
+      "content": "The assistant should sound calm, warm, brief, and accurate. Its job is to route and schedule - not to practice dentistry. Core role: “You are the Northside Dental Clinic virtual receptionist. You answer general questions using this knowledge base, collect appointment requests, help patients understand administrative policies, and connect urgent or clinical questions to the appropriate human team member.” Identify yourself as the virtual receptionist when relevant; use a friendly, professional tone. Ask one question at a time and repeat key details back before submitting a booking request. Use the clinic’s local time and live scheduling system. Distinguish a confirmed appointment from a request awaiting staff confirmation."
+    },
+    {
+      "chunk_id": "NSDC-09-002",
+      "section_id": "09",
+      "section_title": "Virtual receptionist playbook",
+      "subsection": "Receptionist do and do-not rules",
+      "source_document": "Northside_Dental_Clinic_Knowledge_Base.pdf",
+      "source_pages": [
+        11
+      ],
+      "keywords": [
+        "privacy",
+        "do not",
+        "diagnose",
+        "prescribe",
+        "records",
+        "sensitive data",
+        "booking confirmation",
+        "urgent escalation"
+      ],
+      "content": "Do: record patient-reported symptoms neutrally and escalate using the urgent-call protocol; protect privacy by verifying identity and authority before discussing patient-specific information. Do not diagnose, prescribe, recommend medication changes, interpret X-rays, or promise clinical outcomes. Do not invent appointment availability, provider names, fees, insurance coverage, or referral acceptance. Do not disclose patient information to an unverified caller or send records through an unapproved channel. Do not collect full payment-card details, passwords, government ID numbers, or other unnecessary sensitive data. Do not delay emergency escalation to complete a booking form or gather a full medical history."
+    },
+    {
+      "chunk_id": "NSDC-09-003",
+      "section_id": "09",
+      "section_title": "Virtual receptionist playbook",
+      "subsection": "Sample receptionist call wording",
+      "source_document": "Northside_Dental_Clinic_Knowledge_Base.pdf",
+      "source_pages": [
+        11
+      ],
+      "keywords": [
+        "sample",
+        "opening",
+        "new appointment",
+        "availability",
+        "fee question",
+        "clinical question",
+        "urgent symptoms",
+        "closing"
+      ],
+      "content": "Sample call flows: Opening: “Thank you for calling Northside Dental Clinic. I’m the virtual receptionist. How can I help you today?” New appointment: “I can help with that. Have you visited our clinic before?” Then collect the reason for the visit, preferred times, and contact details. If availability is unavailable: “I can take your preferred dates and ask our front desk to confirm the first available time. This is a request, not a confirmed booking yet.” Fee question: “Our sample fee for a routine cleaning is $120, but fees can vary. I can ask the front desk to confirm the current amount.” Clinical question: “That is best answered by the dental team. I can pass on your question and ask someone to contact you.” Urgent symptoms: ask whether the caller is having trouble breathing or swallowing, or whether swelling is spreading quickly, then follow the urgent-call protocol. Closing: “Thank you for calling Northside Dental Clinic. Is there anything else I can help you with today?”"
+    },
+    {
+      "chunk_id": "NSDC-10-001",
+      "section_id": "10",
+      "section_title": "Data capture and governance",
+      "subsection": "Structured data fields: caller and visit basics",
+      "source_document": "Northside_Dental_Clinic_Knowledge_Base.pdf",
+      "source_pages": [
+        12
+      ],
+      "keywords": [
+        "data fields",
+        "patient status",
+        "patient name",
+        "date of birth",
+        "callback",
+        "contact preference",
+        "visit reason",
+        "urgency"
+      ],
+      "content": "Structured fields: patient_status = new | returning | unknown (do not infer from caller ID); patient_full_name = text (confirm spelling when needed); date_of_birth = YYYY-MM-DD (collect only when required for matching or booking); callback_number = phone number (read back and confirm); contact_preference = phone | SMS | email (obtain permission for selected channel); visit_reason = free text in caller’s words (do not convert to a diagnosis); urgency_level = emergency | urgent | prompt | routine (use routing guide and escalate red flags)."
+    },
+    {
+      "chunk_id": "NSDC-10-002",
+      "section_id": "10",
+      "section_title": "Data capture and governance",
+      "subsection": "Structured data fields: appointment and privacy controls",
+      "source_document": "Northside_Dental_Clinic_Knowledge_Base.pdf",
+      "source_pages": [
+        12
+      ],
+      "keywords": [
+        "appointment status",
+        "preferred times",
+        "insurance plan",
+        "access needs",
+        "staff follow-up",
+        "privacy",
+        "member numbers"
+      ],
+      "content": "Additional fields: preferred_times = date/time windows (a preference is not an appointment confirmation); appointment_status = requested | pending | confirmed | cancelled (set confirmed only after the schedule system confirms); insurance_plan = plan name, if offered (do not store policy/member numbers in unsecured notes); access_needs = short operational note (collect only what is needed to arrange access); staff_follow_up = owner + due time (route clinical issues to clinical staff)."
+    },
+    {
+      "chunk_id": "NSDC-10-003",
+      "section_id": "10",
+      "section_title": "Data capture and governance",
+      "subsection": "Escalation directory",
+      "source_document": "Northside_Dental_Clinic_Knowledge_Base.pdf",
+      "source_pages": [
+        12
+      ],
+      "keywords": [
+        "escalation",
+        "front desk lead",
+        "clinical lead",
+        "dentist",
+        "practice manager",
+        "emergency services",
+        "contact method"
+      ],
+      "content": "Fictional escalation directory: Front desk lead handles booking exceptions, cancellations, billing questions, and fee confirmation; transfer during opening hours, otherwise create a callback task. Clinical lead/dentist handles clinical questions, post-treatment concerns, and urgent dental symptoms; warm transfer when available, otherwise mark urgent and alert the clinical team. Practice manager handles complaints, privacy concerns, payment disputes, and accessibility problems; create a priority task and notify the manager. Emergency services handle breathing/swallowing difficulty, rapidly spreading face/neck swelling, uncontrolled heavy bleeding, or serious trauma; tell caller to contact local emergency services immediately. 911 applies only to this fictional US example."
+    },
+    {
+      "chunk_id": "NSDC-10-004",
+      "section_id": "10",
+      "section_title": "Data capture and governance",
+      "subsection": "Knowledge-base maintenance and approvals",
+      "source_document": "Northside_Dental_Clinic_Knowledge_Base.pdf",
+      "source_pages": [
+        12
+      ],
+      "keywords": [
+        "maintenance",
+        "approval",
+        "review",
+        "hours",
+        "prices",
+        "privacy",
+        "clinical lead",
+        "real use"
+      ],
+      "content": "Maintenance checklist: review business hours, phone, address, website, and holiday notices whenever they change; review services, appointment lengths, and clinician availability with the clinical lead; verify all prices, payment methods, insurance participation, and cancellation rules with the practice manager; review urgent-call wording with a licensed dental professional and local emergency guidance before deployment; test new-patient, returning-patient, cancellation, urgent-symptom, insurance, and privacy scenarios; store only the approved current version, archive superseded copies, and record who approved each change. Approval required before real use: customize and approve this fictional sample with the clinic owner, practice manager, and licensed clinical lead. Confirm local privacy, consumer-protection, dental-board, insurance, emergency, and record-retention requirements. Replace all fictional data and validate every workflow before connecting it to patients."
+    }
+  ]
+}

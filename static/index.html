@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f7f5">
+  <meta name="description" content="A minimal AI chat demo.">
+  <title>Demo</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <span class="demo-label">DEMO</span>
+    </header>
+
+    <section id="conversation" class="conversation" aria-live="polite" aria-label="Conversation">
+      <div id="welcome" class="welcome">
+        <h1>Demo</h1>
+        <p>Ask a question to get started.</p>
+      </div>
+    </section>
+
+    <form id="chat-form" class="composer">
+      <label class="visually-hidden" for="question">Your question</label>
+      <textarea
+        id="question"
+        name="query"
+        rows="1"
+        maxlength="2000"
+        placeholder="Ask a question..."
+        autocomplete="off"
+        required
+      ></textarea>
+      <button id="send-button" type="submit" aria-label="Send message">Send</button>
+    </form>
+    <p class="footnote">Demo only · Responses may be inaccurate</p>
+  </main>
+</body>
+</html>
