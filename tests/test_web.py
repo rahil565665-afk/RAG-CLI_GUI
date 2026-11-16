@@ -14,6 +14,11 @@ def test_homepage_serves_minimal_demo_ui():
     assert "Northside" not in response.text
 
 
+def test_static_assets_are_served():
+    assert client.get("/static/styles.css").status_code == 200
+    assert client.get("/static/app.js").status_code == 200
+
+
 def test_health_reports_loaded_local_knowledge_base():
     response = client.get("/health")
     assert response.status_code == 200
