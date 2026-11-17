@@ -6,7 +6,7 @@ from .rag_service import RAGService
 from .retrieval import BM25Retriever, KnowledgeBase
 
 
-def build_service() -> RAGService:
+def build_service(top_k: int | None = None) -> RAGService:
     settings = get_settings()
     knowledge_base = KnowledgeBase.load(settings.kb_path)
     retriever = BM25Retriever(knowledge_base)
@@ -20,5 +20,5 @@ def build_service() -> RAGService:
         retriever=retriever,
         generator=generator,
         min_relevance=settings.min_relevance,
-        top_k=settings.top_k,
+        top_k=top_k or settings.top_k,
     )
