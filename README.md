@@ -251,45 +251,156 @@ Run one command at a time. The GUI server command stays active until you stop it
 - **Gemini rejects the request or model:** Check the key, project permissions, model ID, internet connection, quota, and current model availability in Google AI Studio.
 - **Port 8000 is busy:** Use another port, such as 8001, in the Uvicorn command and open the matching local URL.
 
-## How it works
+## Project structure
 
-1. The CLI or browser accepts a question.
-2. Both interfaces pass it to the same RAG service.
-3. A local BM25 retriever searches the included 31 knowledge-base chunks and selects relevant evidence.
-4. Gemini generates a structured response using the question and the selected evidence.
-5. Pydantic validates the model response. The application attaches source metadata from trusted local knowledge-base records rather than trusting model-generated source details.
+The repository combines the original CLI application with the browser GUI. The CLI and GUI share the same RAG service, configuration, retrieval implementation, Gemini integration, and local knowledge base.
 
-The response contains:
+```text
+RAG-CLI_GUI/
+├── app/
+│   ├── cli.py              # Command-line interface
+│   ├── config.py           # Reads local .env and environment settings
+│   ├── gemini_client.py    # Gemini API client, retries and structured JSON
+│   ├── main.py             # FastAPI application and browser/API endpoints
+│   ├── rag_service.py      # Retrieval, generation, safety handling and citations
+│   ├── retrieval.py        # Local BM25 retrieval and knowledge-base loading
+│   ├── schemas.py          # Pydantic request and response schemas
+│   └── service.py          # Shared RAG service factory for CLI and GUI
+├── data/
+│   ├── northside_dental_knowledge_base.json
+│   └── northside_dental_knowledge_base_section_index.md
+├── static/
+│   ├── app.js              # Browser chat behavior and API requests
+│   ├── index.html          # Minimal chat page
+│   └── styles.css          # Browser interface styling
+├── tests/                  # Offline automated tests
+├── .github/workflows/
+│   └── tests.yml           # Python test matrix and Docker build check
+├── .dockerignore
+├── .env.example            # Safe configuration template (no real key)
+├── .gitignore              # Excludes .env and local environments
+├── Dockerfile
+├── requirements.txt
+└── README.md
+```
 
-- `answer`: the generated text.
-- `sources`: verified citations to local knowledge-base chunks.
-- `confidence_score`: a 0–100 retrieval-support indicator, **not** a calibrated probability that the answer is correct.
-- `answerable`: whether the response has supporting citations from the local knowledge base.
+## Architecture and design decisions
 
-When no local passage supports the answer, Gemini may still provide a clearly labelled general educational response or explain that a clinic-specific detail is not in the knowledge base. In that case, `sources` is empty, `confidence_score` is 0, and `answerable` is false. A narrow deterministic check for certain obvious emergency phrases runs before Gemini; it directs the user to local emergency services and does not diagnose symptoms.
+The project uses a deliberately small, local-first RAG architecture that can be accessed through either the CLI or the browser GUI:
 
-## Main libraries
+1. **Local knowledge source:** the fictional clinic handbook is represented as a JSON file containing 31 topic-based chunks. Each chunk carries a stable ID, section information, source-page information, keywords, and content. The accompanying section index provides a human-readable guide to the handbook's structure.
+2. **Local retrieval before generation:** a BM25 keyword retriever ranks the chunks on the machine running the application. The project does not require a hosted vector database, embedding service, or separate retrieval server.
+3. **Relevance gate and top-k selection:** the retriever ranks matching chunks, then the RAG service sends only passages that meet the configured minimum relevance threshold and cover at least 60% of the meaningful query terms. The number of passages is limited to five. The default `TOP_K` is four. This reduces the risk of treating one shared word (for example, “tooth”) as proof of a particular clinic service such as tooth replacement.
+4. **Grounded answer generation:** the application sends the question and selected evidence to Google Gemini. For clinic-specific questions, the model is instructed to rely only on the supplied evidence and to treat missing information as unknown rather than guessing. For general dental-education questions, it may provide concise general information, but it must clearly label that information as not confirmed Northside Dental Clinic policy or service information.
+5. **Structured response validation:** Pydantic validates the model's small response schema. The application then maps model-cited chunk IDs back to the retrieved local records and builds source citations itself. It does not trust the model to invent section names, document names, or page metadata.
+6. **Safety-first deterministic handling:** a narrow emergency-phrase rule runs before a Gemini request for certain obvious emergency symptoms. It directs the user to local emergency services. This is only a limited backstop, not a diagnostic system or a replacement for professional care or local emergency services.
+7. **Two interfaces over one service:** the CLI provides terminal-based interaction and structured JSON output. FastAPI serves the minimal browser GUI and the HTTP endpoints. Both call the same service factory and RAG implementation rather than maintaining separate retrieval or answer-generation logic.
 
-- Python for the application.
-- BM25 retrieval for local keyword search.
-- FastAPI and Uvicorn for the web GUI/API server.
-- Google Gen AI SDK for Gemini answer generation.
-- Pydantic for request and structured-response validation.
-- python-dotenv for local environment configuration.
-- HTML, CSS, and JavaScript for the browser interface.
-- pytest for automated tests.
-- Docker for optional local container builds.
+These decisions keep the demo understandable, inexpensive to run, and straightforward for a developer to inspect. The lexical BM25 approach is intentionally transparent and runs locally, although it can miss synonyms, paraphrases, and questions that use words different from those in the knowledge base.
 
-## Limitations
+### Response structure and source handling
 
-- The knowledge base is fictional demo content; this is not a real clinic service or a clinical decision tool.
-- Do not enter patient data, personal details, or sensitive information.
-- BM25 is keyword-based and may miss synonyms or paraphrases.
-- The confidence score describes retrieval support; it is not a medical or factual certainty score.
-- The request rate limiter is in-memory and per process. A multi-instance deployment would need a shared rate limiter.
-- Automated tests mock Gemini. Live answers depend on a valid API key, model access, network connectivity, and available quota.
-- No hosting service, public URL, or deployment is configured by this repository.
+The application response contains four fields:
+
+| **Field** | **Meaning** |
+| --- | --- |
+| `answer` | The generated answer text. |
+| `sources` | Source citations constructed from verified local knowledge-base records. |
+| `confidence_score` | A 0–100 retrieval-support indicator based on the cited retrieved passages. It is not a calibrated probability of correctness. |
+| `answerable` | Indicates whether the answer has supporting citations from the local knowledge base. |
+
+When no retrieved passage supports a response, the model may still return a clearly labelled general educational answer or explain that a clinic-specific detail is not specified. In that case, `sources` is empty, `confidence_score` is zero, and `answerable` is false. A deterministic emergency response is handled separately before the normal Gemini generation path.
+
+## Libraries and frameworks used
+
+| **Library / tool** | **How it is used** |
+| --- | --- |
+| Python standard library | CLI argument handling, JSON processing, file paths, tokenization, BM25 scoring, environment access, and regular-expression safety checks. |
+| `google-genai` | Calls the Gemini Developer API and requests structured JSON output. |
+| Pydantic | Defines and validates the model draft, API request, health response, and application response schemas. |
+| `python-dotenv` | Loads the developer's local `.env` configuration without hard-coding API keys. |
+| FastAPI | Provides the browser GUI backend, health endpoint, and chat API on top of the same RAG service. |
+| Uvicorn | Runs the FastAPI application locally and inside the Docker container. |
+| HTTPX2 | Provides the supported HTTP transport used by Starlette's test client in the current dependency setup. |
+| pytest | Runs automated tests for CLI behavior, retrieval, service behavior, API behavior, and Gemini schema compatibility. |
+| HTML, CSS and JavaScript | Provide the minimal browser interface without a frontend framework or separate JavaScript build step. |
+| Docker | Packages the application and its runtime dependencies into a container image. |
+
+No separate vector database, embeddings framework, LangChain, or frontend framework is required by the current implementation.
+
+## Configuration reference
+
+The application reads `.env` from the repository root. Environment variables already defined in the shell take precedence over values in `.env`.
+
+| **Setting** | **Default** | **Purpose** |
+| --- | --- | --- |
+| `GEMINI_API_KEY` | Required | Private Google Gemini API key used for normal answer generation. |
+| `GEMINI_MODEL` | `gemini-3.5-flash-lite` | Gemini model used to generate answers. |
+| `TOP_K` | `4` | Maximum number of retrieved passages considered for the answer (1–5). |
+| `MIN_RELEVANCE` | `0.22` | Minimum retrieval relevance required for a passage to be sent as supporting evidence (0–1). |
+| `RATE_LIMIT_PER_MINUTE` | `30` | Per-process request limit used by the HTTP chat endpoint. |
+| `NORTHSIDE_KB_PATH` | `data/northside_dental_knowledge_base.json` | Optional path override for the local knowledge-base JSON file. |
+
+The defaults shown here describe the application configuration. The earlier setup section explains how to create the local `.env` file and enter the Gemini API key. Keep the real key private and do not commit it.
 
 ## AI-assisted development
 
-AI coding assistants were used to implement parts of the CLI, retrieval, Gemini integration, GUI, tests, and documentation. The project requirements and architecture were directed through implementation instructions, followed by iterative local testing, debugging, and review of generated changes.
+AI coding assistants were used to write most of the code, including much of the CLI, retrieval and RAG service implementation, Gemini integration, schemas, browser GUI, tests, and documentation.
+
+My main contribution was deciding what the application should look like architecturally and specifying that design in detailed implementation prompts. I defined the intended CLI and browser workflow, local knowledge-base retrieval, Gemini-powered grounded response generation, structured JSON output, source citations, and the supporting technology choices before the implementation was generated.
+
+After that, my hands-on coding involvement was mainly in running the project, identifying errors during installation and testing, and correcting those issues. I tested the working application with real Gemini requests and iterated on problems such as Windows dependency installation, CLI behavior, and Gemini's structured-output schema compatibility.
+
+In other words, AI coding assistants produced most of the actual code; I directed the architecture and requirements, then focused on troubleshooting and validating the result.
+
+## Additional troubleshooting: Gemini and retrieval
+
+The basic Windows setup and startup issues are covered in the troubleshooting section above. The notes here cover more specific model-provider and retrieval behavior.
+
+### Gemini returns 400 with an `additionalProperties` or schema error
+
+The `GeminiDraft` schema in `app/schemas.py` must keep `ConfigDict(extra="ignore")`. Gemini's response-schema endpoint does not accept the extra `additionalProperties` field generated by a strict Pydantic schema for this model draft. Do not change that setting back to `extra="forbid"`. The application response and source-citation schemas have their own validation rules.
+
+### Gemini returns 401 or 403
+
+The application classifies these responses as an authentication or permissions failure. Check that the API key is valid and that the corresponding Google AI Studio project can use the Gemini API. If the key was exposed, revoke it and create a replacement key, then update the local `.env` file.
+
+### Gemini returns 404 or says the model is unavailable
+
+Check the current [Gemini model list](https://ai.google.dev/gemini-api/docs/models) and confirm the model ID is available to your project. You can change `GEMINI_MODEL` in `.env`. Model availability can change over time and may vary by account or region.
+
+### Gemini reports a temporary provider or network error
+
+The Gemini client configures SDK retries for common transient HTTP responses, including 408, 429, 500, 502, 503, and 504, with bounded exponential backoff. If the retries are exhausted, the CLI returns a sanitized error code and the GUI returns an actionable HTTP error. For `GEMINI_TEMPORARILY_UNAVAILABLE` or `GEMINI_NETWORK_ERROR`, check connectivity and try again. Persistent quota exhaustion requires the relevant quota window to reset or the project limit to be increased.
+
+### Gemini returns 429 or quota exceeded
+
+This indicates that a rate or usage limit was reached. Check the project's current [Gemini API rate limits](https://ai.google.dev/gemini-api/docs/rate-limits) and usage in Google AI Studio. Wait for the relevant quota window to reset or use a project/model with available quota. A free tier does not mean unlimited requests.
+
+### The answer says the knowledge base does not contain enough information
+
+The local retriever uses BM25 keyword matching, not semantic embeddings. Try a more specific question using terms likely to appear in the clinic document. You can also try `--top-k 5` with the CLI to consider the maximum number of passages. Increasing `TOP_K` does not bypass the relevance and query-coverage checks. A very low `MIN_RELEVANCE` threshold can introduce unrelated passages, so change it carefully.
+
+### The CLI reports a provider error
+
+The CLI intentionally hides low-level provider details, stack traces, local paths, and credentials from normal output. Read the returned error code and message, then check the model ID, network connection, API key, project access, and quota as appropriate. To check the local installation separately, run the automated tests using the command in the setup section above.
+
+## Fictional address in the sample knowledge base
+
+The Northside Dental sample profile uses this invented demonstration address: **18 Cedar Lane, Northside District, Riverton, Example State 00018, USA**. It is stored in the existing clinic-profile knowledge-base chunk so questions such as “What is the clinic address?” or the common typo “What is your adress?” can retrieve the profile. The district, state, and postal code are fictional additions for this demo, not a real location.
+
+## Safety and limitations
+
+- All Northside Dental content is fictional demonstration data.
+- Do not use this project to answer real patient questions or make treatment decisions.
+- Do not enter or upload real patient information, personal details, or other sensitive information.
+- The app does not diagnose, prescribe, recommend medication changes, interpret X-rays, or provide individualized clinical advice. Personal symptoms, treatment decisions, and clinical concerns should be discussed with a licensed dentist or the relevant clinical team.
+- Its emergency-phrase check is a narrow deterministic backstop. It is not a diagnostic tool and is not a substitute for local emergency services. The number 911 is only part of the fictional US example and must not be treated as a universal emergency number.
+- BM25 is lexical retrieval; it can miss synonyms and paraphrases or fail to retrieve relevant passages when the wording differs from the source material.
+- The confidence score describes local retrieval support. It is not a calibrated probability of correctness, clinical certainty, or a measure of treatment safety.
+- No appointment booking, live insurance verification, or patient-record integration is included. The assistant must not invent appointment slots, bookings, provider details, fees, or insurance coverage.
+- The request rate limiter is in-memory and per process. A multi-instance deployment would need a shared rate limiter.
+- Automated tests mock Gemini. Live answers still depend on a valid API key, model access, network connectivity, and available quota.
+- Google Gemini API usage is subject to Google's terms, privacy practices, model availability, and rate limits.
+- No hosting service, public URL, or deployment is configured by this repository.
+
