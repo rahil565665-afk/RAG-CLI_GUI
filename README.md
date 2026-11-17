@@ -44,36 +44,32 @@ The version command should report Python 3.12.x. You can also install the Python
 
 ### 1. Clone the repository
 
-Run this block in PowerShell:
+Run these commands in PowerShell, one at a time:
 
 ```powershell
 $projectRoot = Join-Path $HOME 'Projects'
 $repoPath = Join-Path $projectRoot 'RAG-CLI_GUI'
-
 New-Item -ItemType Directory -Force -Path $projectRoot | Out-Null
-
-if (Test-Path $repoPath) {
-    if (-not (Test-Path (Join-Path $repoPath '.git'))) {
-        throw "The folder $repoPath already exists but is not a Git repository. Rename that folder or choose another project directory; do not clone over it."
-    }
-    Write-Host "Existing Git clone found. Its files will not be overwritten."
-}
-else {
-    Set-Location $projectRoot
-    git clone https://github.com/rahil565665-afk/RAG-CLI_GUI.git
-    if ($LASTEXITCODE -ne 0) {
-        throw "Git clone failed. Check the Git installation, internet connection, and repository URL."
-    }
-}
-
+Set-Location $projectRoot
+git clone https://github.com/rahil565665-afk/RAG-CLI_GUI.git
 Set-Location $repoPath
 Get-Location
 Get-ChildItem -Force
 ```
 
-The location should end in `Projects\RAG-CLI_GUI`. In the file listing, you should see folders such as `app`, `data`, `static`, and `tests`, plus `requirements.txt` and `.env.example`.
+The location should end in `Projects\\RAG-CLI_GUI`. In the file listing, you should see folders such as `app`, `data`, `static`, and `tests`, plus `requirements.txt` and `.env.example`.
 
-If you already cloned the repository earlier, the block above enters that existing clone and does **not** replace or overwrite its files. To update a clean existing clone later, first check that you have no uncommitted changes with `git status`, then run:
+**Already cloned this repository?** Do not run `git clone` again. Instead, run these commands to enter the existing clone:
+
+```powershell
+$repoPath = Join-Path $HOME 'Projects\\RAG-CLI_GUI'
+Set-Location $repoPath
+Get-Location
+```
+
+If the `RAG-CLI_GUI` folder already exists but is not a Git repository, do not clone over it. Rename that folder or choose a different project directory first.
+
+To update an existing clone, first check for local changes with `git status`. Do not pull over work you have not committed or backed up. When the working tree is clean, run:
 
 ```powershell
 git pull --ff-only
